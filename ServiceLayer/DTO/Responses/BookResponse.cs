@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepositoryLayer
+namespace ServiceLayer.DTO.Responses
 {
-    public class Class1
+    public  class BookResponse
     {
-        public int a { get; set; }
+        public string Title { get; set; }
     }
 }

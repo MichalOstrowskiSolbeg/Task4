@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RepositoryLayer.Models;
+#nullable disable
 
-public partial class Category
+namespace RepositoryLayer.Models
 {
-    public int Id { get; set; }
+    public partial class Category
+    {
+        public Category()
+        {
+            BookCategories = new HashSet<BookCategory>();
+        }
 
-    public string CategoryText { get; set; } = null!;
+        public int Id { get; set; }
+        public string CategoryText { get; set; }
+        public int CategoryValue { get; set; }
 
-    public virtual ICollection<BookCategory> BookCategories { get; } = new List<BookCategory>();
+        public virtual ICollection<BookCategory> BookCategories { get; set; }
+    }
 }

@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace RepositoryLayer.Models
+namespace ServiceLayer.DTO.Responses
 {
-    public partial class BookCategory
+    public class BookCategoryResponse
     {
         public int BookId { get; set; }
+
         public int CategoryId { get; set; }
+
         public DateTime WhenAdded { get; set; }
+
         public bool IsRead { get; set; }
 
-        public virtual Book Book { get; set; }
-        public virtual Category Category { get; set; }
+        public string Title { get; set; }
+
+        public string Category { get; set; }
     }
 }

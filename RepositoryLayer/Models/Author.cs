@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RepositoryLayer.Models;
+#nullable disable
 
-public partial class Author
+namespace RepositoryLayer.Models
 {
-    public int Id { get; set; }
+    public partial class Author
+    {
+        public Author()
+        {
+            BookAuthors = new HashSet<BookAuthor>();
+        }
 
-    public string FirstName { get; set; } = null!;
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-    public string LastName { get; set; } = null!;
-
-    public virtual ICollection<Book> Books { get; } = new List<Book>();
+        public virtual ICollection<BookAuthor> BookAuthors { get; set; }
+    }
 }

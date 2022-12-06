@@ -16,6 +16,7 @@ namespace RepositoryLayer
         {
             services.AddTransient<IBookRepository, BookRepository>();
             services.AddTransient<IBookCategoryRepository, BookCategoryRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             return services;
         }
     }

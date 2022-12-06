@@ -15,6 +15,7 @@ namespace ServiceLayer
         {
             services.AddTransient<IBook, BookService>();
             services.AddTransient<IBookCategory, BookCategoryService>();
+            services.AddTransient<ICategory, CategoryService>();
             return services;
         }
     }

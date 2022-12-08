@@ -8,17 +8,10 @@ class BookCategoryDetails extends React.Component {
     constructor(props) {
         super(props);
         const id = this.props.params.Id
-
         this.state = {
             error: null,
             isLoaded: false,
             data: {
-                BookId: '',
-                CategoryId: '',
-                IsRead: '',
-                WhenAdded: ''
-            },
-            errors: {
                 BookId: '',
                 CategoryId: '',
                 IsRead: '',
@@ -29,10 +22,10 @@ class BookCategoryDetails extends React.Component {
     }
 
     getBookData() {
-        getBookCategory(this.state.id).then(res => res.json())
+        getBookCategory(this.state.id)
+            .then(res => res.json())
             .then(
                 (data) => {
-                    console.log(data)
                     this.setState({
                         isLoaded: true,
                         data: data
@@ -52,7 +45,7 @@ class BookCategoryDetails extends React.Component {
     }
 
     render() {
-        const { errors, data, mode } = this.state
+        const { data } = this.state
 
         return (
             <main>

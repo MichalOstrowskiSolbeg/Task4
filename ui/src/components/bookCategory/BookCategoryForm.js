@@ -157,7 +157,7 @@ class BookCategoryForm extends React.Component {
         if (isValid) {
             const req = this.state.data
             const currentFormMode = this.state.mode
-            let promise, response;
+            let promise
             if (currentFormMode === formMode.NEW) {
                 promise = addBookCategory(req)
             } else if (currentFormMode === formMode.EDIT) {
@@ -171,34 +171,16 @@ class BookCategoryForm extends React.Component {
             if (promise) {
                 promise
                     .then(
-                        (data) => {
-                            console.log(data)
-                            response = data
+                        (response) => {
                             if (response.ok) {
                                 navigate("/my_books", { replace: true });
                             } else {
-                                return data.json()
+                                return response.json()
                             }
                         })
                     .then(
                         (data) => {
                             console.log(data)
-
-                            /*if (!response.ok && response.status === 500) {
-                                for (const i in data) {
-                                    const errorItem = data[i]
-                                    const errorMessage = errorItem.message
-                                    const fieldName = errorItem.path
-                                    const errors = { ...this.state.errors }
-                                    errors[fieldName] = errorMessage
-                                    this.setState({
-                                        errors: errors,
-                                        error: null
-                                    })
-                                }
-                            } else {
-                                this.setState({ redirect: true })
-                            }*/
                         },
                         (error) => {
                             this.setState(
@@ -213,7 +195,7 @@ class BookCategoryForm extends React.Component {
     }
 
     render() {
-        const { errors, data, mode, isLoaded, error, books, categories } = this.state
+        const { data, mode, isLoaded, error, books, categories } = this.state
         const pageTitle = mode === formMode.NEW ? 'Add' : `Edit`
         let content;
 

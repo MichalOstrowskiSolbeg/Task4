@@ -1,4 +1,5 @@
-﻿using RepositoryLayer.Interfaces;
+﻿using AutoMapper;
+using RepositoryLayer.Interfaces;
 using RepositoryLayer.Models;
 using ServiceLayer.DTO.Requests;
 using ServiceLayer.DTO.Responses;
@@ -15,37 +16,23 @@ namespace ServiceLayer.Services
     {
         private readonly IBookCategoryRepository _bookCategory;
         private readonly IBookRepository _book;
-        public BookCategoryService(IBookCategoryRepository bookCategory, IBookRepository book)
+        private readonly IMapper _mapper;
+        public BookCategoryService(IBookCategoryRepository bookCategory, IBookRepository book, IMapper mapper)
         {
             _bookCategory = bookCategory;
             _book = book;
+            _mapper = mapper;
         }
 
         public List<BookCategoryResponse> GetBookCategories()
         {
-            return _bookCategory.GetBookCategories().OrderBy(x => x.Position).Select(x => new BookCategoryResponse
-            {
-                BookId = x.BookId,
-                CategoryId = x.CategoryId,
-                Title = x.Book.Title,
-                Category = x.Category.CategoryText,
-                WhenAdded = x.WhenAdded,
-                IsRead = x.IsRead
-            }).ToList();
+            var list = _bookCategory.GetBookCategories().OrderBy(x => x.Position).ToList();
+            return _mapper.Map<List<BookCategoryResponse>>(list);
         }
 
         public BookCategoryResponse GetBookCategory(int id)
         {
-            var bookCategory = _bookCategory.GetBookCategory(id);
-            return new BookCategoryResponse
-            {
-                BookId = bookCategory.BookId,
-                CategoryId = bookCategory.CategoryId,
-                Title = bookCategory.Book.Title,
-                Category = bookCategory.Category.CategoryText,
-                WhenAdded = bookCategory.WhenAdded,
-                IsRead = bookCategory.IsRead
-            };
+            return _mapper.Map<BookCategoryResponse>(_bookCategory.GetBookCategory(id));
         }
 
         public void ChangeStatus(int id)
@@ -55,13 +42,7 @@ namespace ServiceLayer.Services
 
         public void CreateBookCategory(BookCategoryRequest request)
         {
-            _bookCategory.CreateBookCategory(new BookCategory
-            {
-                BookId = request.BookId,
-                CategoryId = request.CategoryId,
-                IsRead = request.IsRead,
-                WhenAdded = DateTime.Now
-            });
+            _bookCategory.CreateBookCategory(_mapper.Map<BookCategory>(request));
         }
 
         public void DeleteBookCategory(int id)
@@ -71,12 +52,7 @@ namespace ServiceLayer.Services
 
         public void UpdateBookCategory(BookCategoryRequest request)
         {
-            _bookCategory.UpdateBookCategory(new BookCategory
-            {
-                BookId = request.BookId,
-                CategoryId = request.CategoryId,
-                IsRead = request.IsRead
-            });
+            _bookCategory.UpdateBookCategory(_mapper.Map<BookCategoryRequest, BookCategory>(request));
         }
 
         public void PositionUp(int id)
@@ -91,13 +67,7 @@ namespace ServiceLayer.Services
 
         public List<BookResponse> GetAvailableBooks()
         {
-            return _book.GetAvailableBooks().Select(x => new BookResponse
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Year = x.Year,
-                Authors = x.BookAuthors.Select(x => x.Author.FirstName + " " + x.Author.LastName).ToList()
-            }).ToList();
+            return _mapper.Map<List<BookResponse>>(_book.GetAvailableBooks());
         }
     }
 }

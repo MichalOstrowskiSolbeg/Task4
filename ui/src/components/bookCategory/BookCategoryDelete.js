@@ -16,11 +16,10 @@ class BookCategoryDelete extends React.Component {
         deleteBookCategory(this.state.Id)
             .then(
                 (res) => {
-                    if (res.ok) {
-                        this.setState({
-                            redirect: true
-                        })
-                    }
+                    console.log(res)
+                    this.setState({
+                        redirect: true
+                    })
                 }
             )
     }

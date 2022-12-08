@@ -1,7 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
 using RepositoryLayer;
 using ServiceLayer;
+using ServiceLayer.Validators;
 using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<MyDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssembly(typeof(BookCategoryRequestValidator).Assembly);
 
 builder.Services.AddRepositoryLayer().AddServiceLayer();
 

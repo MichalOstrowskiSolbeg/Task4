@@ -1,6 +1,8 @@
 import React from "react";
-import { getBookCategories } from "../../api/BookCategoryApiCalls";
+import { getBookCategories, changePositionUp, changePositionDown } from "../../api/BookCategoryApiCalls";
 import BookCategoryListTable from "./BookCategoryListTable";
+import { useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
 
 class BookCategoryList extends React.Component {
     constructor(props) {
@@ -45,7 +47,7 @@ class BookCategoryList extends React.Component {
         } else if (!isLoaded) {
             content = <p>Loading...</p>
         } else {
-            content = <BookCategoryListTable data={data} />
+            content = <BookCategoryListTable data={data} up={this.positionUp} down={this.positionDown} />
         }
 
         return (

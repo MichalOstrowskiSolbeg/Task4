@@ -11,6 +11,7 @@ namespace RepositoryLayer.Models
         public int CategoryId { get; set; }
         public DateTime WhenAdded { get; set; }
         public bool IsRead { get; set; }
+        public int Position { get; set; }
 
         public virtual Book Book { get; set; }
         public virtual Category Category { get; set; }

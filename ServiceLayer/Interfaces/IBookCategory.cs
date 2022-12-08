@@ -15,8 +15,10 @@ namespace ServiceLayer.Interfaces
         List<BookResponse> GetAvailableBooks();
         BookCategoryResponse GetBookCategory(int id);
         void DeleteBookCategory(int id);
-        void UpdateBookCategory(int id);
-        void CreateBookCategory(BookCategoryCreateRequest request);
+        void UpdateBookCategory(BookCategoryRequest request);
+        void CreateBookCategory(BookCategoryRequest request);
         void ChangeStatus(int id);
+        void PositionUp(int id);
+        void PositionDown(int id);
     }
 }

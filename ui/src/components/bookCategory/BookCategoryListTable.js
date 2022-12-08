@@ -1,14 +1,17 @@
 import { getFormattedDate } from '../../helperFunctions/dateFormat';
 import { Link } from "react-router-dom";
-import { changeStatus } from '../../api/BookCategoryApiCalls';
+import { changePositionUp, changePositionDown, changeStatus } from '../../api/BookCategoryApiCalls';
+import { useNavigate } from "react-router";
 
 function BookCategoryListTable(props) {
+    const navigate = useNavigate();
     const data = props.data
     return (
         <>
             <table className="table-list">
                 <thead>
                     <tr>
+                        <th>Position</th>
                         <th>Title</th>
                         <th>When added</th>
                         <th>Category</th>
@@ -19,13 +22,39 @@ function BookCategoryListTable(props) {
                 <tbody>
                     {data.map(x =>
                         <tr key={x.BookId}>
+                            <td>
+                                <a type="button" onClick={() => {
+                                    changePositionDown(x.BookId)
+                                        .then(res => {
+                                            console.log(res)
+                                            if (res.ok) {
+                                                navigate(0, { replace: true });
+                                            }
+                                        })
+                                    }
+                                }
+                                    id="b-minus" className="button-down">&#8595;
+                                </a>
+                                <a type="button" onClick={() => {
+                                    changePositionUp(x.BookId)
+                                        .then(res => {
+                                            console.log(res)
+                                            if (res.ok) {
+                                                navigate(0, { replace: true });
+                                            }
+                                        })
+                                    }
+                                }
+                                    id="b-plus" className="button-up">&uarr;
+                                </a>
+                            </td>
                             <td>{x.Title}</td>
                             <td>{getFormattedDate(x.WhenAdded)}</td>
                             <td>{x.Category}</td>
                             <td>
-                                <label class="switch">
+                                <label className="switch">
                                     <input type="checkbox" defaultChecked={x.IsRead} onClick={() => changeStatus(x.BookId)} />
-                                    <span class="slider round"></span>
+                                    <span className="slider round"></span>
                                 </label>
                             </td>
                             <td>

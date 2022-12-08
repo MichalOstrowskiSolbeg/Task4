@@ -219,30 +219,34 @@ main {
     }
 
 .list-actions-button-edit,
-.button-edit {
+.form-button-edit {
     background-color: #f5a01b;
 }
 
     .list-actions-button-edit:hover,
-    .button-edit:hover {
+    .form-button-edit:hover {
         background-color: #f7d239;
     }
 
 .list-actions-button-delete,
-.button-cancel {
+.form-button-cancel {
     background-color: #e91e1e;
 }
 
     .list-actions-button-delete:hover,
-    .button-cancel:hover {
+    .form-button-cancel:hover {
         background-color: #F75A5A;
     }
 
-.button-submit {
+.button-up,
+.form-button-submit,
+.button-down {
     background-color: #27ae60;
 }
 
-.button-submit:hover {
+.button-up:hover,
+.form-button-submit:hover,
+.button-down:hover {
     background-color: #2ecc71;
 }
 
@@ -276,7 +280,7 @@ textarea {
 
 .form {
     display: grid;
-    grid-template-columns: 100px 250px 1fr;
+    grid-template-columns: 120px 280px 1fr;
     row-gap: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -287,10 +291,9 @@ textarea {
     grid-column: 1 / span 2;
 }
 
-.button-add,
 .form-button-submit,
 .form-button-cancel,
-.form-button-edit{
+.form-button-edit {
     border: 1px solid #808283;
     border-radius: 8px;
     color: white;
@@ -299,41 +302,7 @@ textarea {
     font-size: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-}
-
-.button-logout,
-.button-login{
-    border: 1px solid #808283;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    margin-bottom: 0.1rem;
-}
-
-.form-button-edit {
-    margin-top: 0;
-}
-
-.button-add,
-.form-button-submit,
-.form-button-cancel,
-.form-button-edit,
-.button-login,
-.button-logout {
     padding: 0.6rem 2rem;
-}
-
-.button-add,
-.form-button-submit{
-    background-color: #27ae60;
-}
-
-.button-add:hover,
-.form-button-submit:hover{
-    background-color: #2ecc71;
 }
 
 .form-text,
@@ -342,26 +311,53 @@ textarea {
 .form input[type="number"],
 .form input[type="date"],
 .form input[type="datetime-local"],
-.form input[type="email"],
-.form select:disabled,
-.form input[type="text"]:disabled,
-.form input[type="number"]:disabled,
-.form input[type="date"]:disabled,
-.form input[type="datetime-local"]:disabled,
-.form input[type="email"]:disabled,
-.form-text{
-    background-color: transparent;
+.form input[type="email"] {
+    border: 1px solid #707070;
+    color: #212121;
+    background-color: white;
+    border-radius: 4px;
+    padding: 0.25rem;
+    width: 100%;
 }
+
+    .form select:disabled,
+    .form input[type="text"]:disabled,
+    .form input[type="number"]:disabled,
+    .form input[type="date"]:disabled,
+    .form input[type="datetime-local"]:disabled,
+    .form input[type="email"]:disabled,
+    .form-text {
+        background-color: transparent;
+    }
+
 .form label{
     display: block;
     margin-top: 0.5rem;
     margin-bottom: 0.75em;
 }
 
+.button-up,
+.button-down {
+    display: inline-block;
+    border-radius: 50px;
+    color: white;
+    /*border: 1px solid #808283;*/
+    font-size: 1rem;
+    text-decoration: none;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    font-weight: bold;
+    padding: 0.45rem 1rem;
+    text-align: center;
+    text-orientation: unset;
+    width: 15px;
+}
+
 .form input.error-input,
 .form select.error-input{
     border: 2px solid #e20c0c
 }
+
 .errors-text {
     display: block;
     font-size: 0.8em;
@@ -370,9 +366,11 @@ textarea {
     margin-left: 0.5rem;
     color: #e20c0c;
 }
+
 .symbol-required {
     color: #e20c0c;
 }
+
 .error-login {
     display: block;
     font-size: 0.8em;

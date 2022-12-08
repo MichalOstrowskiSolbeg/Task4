@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.DTO.Requests
 {
-    public class BookCategoryCreateRequest
+    public class BookCategoryRequest
     {
         public int BookId { get; set; }
 

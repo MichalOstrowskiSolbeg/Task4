@@ -23,7 +23,7 @@ namespace ServiceLayer.Services
 
         public List<BookCategoryResponse> GetBookCategories()
         {
-            return _bookCategory.GetBookCategories().OrderBy(x => x.Category.CategoryValue).Select(x => new BookCategoryResponse
+            return _bookCategory.GetBookCategories().OrderBy(x => x.Position).Select(x => new BookCategoryResponse
             {
                 BookId = x.BookId,
                 CategoryId = x.CategoryId,
@@ -53,7 +53,7 @@ namespace ServiceLayer.Services
             _bookCategory.ChangeStatus(id);
         }
 
-        public void CreateBookCategory(BookCategoryCreateRequest request)
+        public void CreateBookCategory(BookCategoryRequest request)
         {
             _bookCategory.CreateBookCategory(new BookCategory
             {
@@ -69,9 +69,24 @@ namespace ServiceLayer.Services
             _bookCategory.DeleteBookCategory(id);
         }
 
-        public void UpdateBookCategory(int id)
+        public void UpdateBookCategory(BookCategoryRequest request)
         {
-            throw new NotImplementedException();
+            _bookCategory.UpdateBookCategory(new BookCategory
+            {
+                BookId = request.BookId,
+                CategoryId = request.CategoryId,
+                IsRead = request.IsRead
+            });
+        }
+
+        public void PositionUp(int id)
+        {
+            _bookCategory.PositionUp(id);
+        }
+
+        public void PositionDown(int id)
+        {
+            _bookCategory.PositionDown(id);
         }
 
         public List<BookResponse> GetAvailableBooks()

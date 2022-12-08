@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer.Validators
 {
-    public class BookCategoryCreateRequestValidator : AbstractValidator<BookCategoryCreateRequest>
+    public class BookCategoryRequestValidator : AbstractValidator<BookCategoryRequest>
     {
-        public BookCategoryCreateRequestValidator() {
+        public BookCategoryRequestValidator() {
             RuleFor(x => x.BookId).NotEmpty().WithMessage("This field cannot be empty");
 
             RuleFor(x => x.CategoryId).NotEmpty().WithMessage("This field cannot be empty");

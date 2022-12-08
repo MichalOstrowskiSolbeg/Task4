@@ -46,11 +46,56 @@ namespace Task4.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBookCategory(BookCategoryCreateRequest request)
+        public IActionResult AddBookCategory(BookCategoryRequest request)
         {
             try
             {
                 _book.CreateBookCategory(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut]
+        public IActionResult UpdateBookCategory(BookCategoryRequest request)
+        {
+            try
+            {
+                _book.UpdateBookCategory(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("up/{Id}")]
+        public IActionResult UpdatePositionUp(int Id)
+        {
+            try
+            {
+                _book.PositionUp(Id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("down/{Id}")]
+        public IActionResult UpdatePositionDown(int Id)
+        {
+            try
+            {
+                _book.PositionDown(Id);
             }
             catch (Exception ex)
             {

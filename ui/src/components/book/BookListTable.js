@@ -7,7 +7,7 @@ function BookListTable(props) {
                     <tr>
                         <th>Title</th>
                         <th>Year</th>
-                        <th>Authors</th>
+                        <th>Author(s)</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

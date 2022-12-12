@@ -1,33 +1,34 @@
 # Task 4 - "Reading List"
 
-ASP .NET Core MVC application "Reading List". 
+ASP .NET Core & React.js application "Reading List". 
 Application allows you to create your own reading list from available books in database. 
-You can add book to your list, set category and mark(using switch button) if you have already read it.
+You can add book to your list, set category and mark (using switch button) if you have already read it.
 
 
 
 
 ## Features
 
-- CRUD on BookCategory table
-- See all books
-- Reorder BookCategory items position by up and down arrows
-- Change IsRead value using switch button
+- CRUD on BookCategory table ('my books' pages)
+- See all books ('books' page)
+- Reorder BookCategory items position by up and down arrows ('my books' page)
+- Change BookCategory IsRead status using switch button ('my books' page)
 
 ## Documentation
 
-Project contains of 4 layers (Repository, Service, Api, UI). 
+Project contains of 4 layers (Repository, Service, API, UI). 
 Each layer is a different project. Project uses EF to connect to MsSql database. 
-Models were created by scaffolding DbContext. 
+Models in RepositoryLayer were created by scaffolding DbContext. 
 Validation was made with FluentValidation library which could help me separate request objects from validation.
-I'm using AutoMapper to map DTOs
+I'm using Automapper to map DTOs
 
 
 ## How to run
 
-- type 'cd ui' in Powershell terminal
-- type 'npm start' to run React.js application
-- run ASP .Net application
+- write 'cd ui' in Powershell terminal
+- write 'npm install' (when running for the first time) 
+- write 'npm start' to run React application
+- run ASP .Net application using IIS Express
 
 ![first step](https://github.com/MichalOstrowskiSolbeg/Task4/blob/main/screenshot1.png?raw=true)
 
